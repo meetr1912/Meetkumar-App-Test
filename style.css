@@ -1,0 +1,160 @@
+      .container {
+          margin-top: 0px;
+      }
+
+      body {
+        background-color: #8E44AD;
+        background-image:url('luis.jpeg');
+      }
+
+      a:hover {
+        text-decoration: none;
+        color:#fff;
+      }
+
+      button, .btn1 {
+        padding: 1em 2em 1em 2em;
+        background-color: #22313F;
+        border:initial;
+        color:#fff;
+        letter-spacing: 2px;
+      }
+
+
+      .table-bordered {
+          background-color: rgba(243, 221, 241, 0.88);
+      }
+
+      /*navigation */
+
+      .nav-tabs {
+          border-bottom: 1px solid #ddd;
+          background-color: rgba(255, 255, 255, 0.82);
+          width: 90%;
+        }
+
+        .nav-tabs>.active>a, .nav-tabs>.active>a:hover, .nav-tabs>.active>a:focus {
+            color: #555555;
+            font-weight:bold;
+            background-color: #ffffff;
+            border-bottom: 5px solid #2980b9;
+            cursor: pointer;
+            padding-right: 80%;
+        }
+
+        .nav-tabs li {
+            width:33%;
+        }
+
+body {
+    overflow-x: hidden; 
+}
+
+.modal {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  width: 53% !important;
+  z-index: 1050;
+  width: 560px;
+  margin-left: -280px;
+  background-color: #fff;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  outline: none;
+}
+    ul {
+        list-style: none;
+    }
+
+    .send-btn {
+        background-color:#c0392b;
+    }
+
+        .icons {
+            width:20px;
+        }
+
+        .header {
+            width:100%;
+            padding:1em;
+            background-color: #9B59B6;
+            margin-bottom:1em;
+        }
+
+        .logo {
+            color: #fff;
+            padding:0em 1em;
+
+
+
+        }
+
+        .logo-header {
+            display:inline;
+        }
+
+
+        .logo:visited, .logo:hover {
+            text-decoration: none;
+        }
+
+        .faded {
+            color: gray;
+        }
+
+        .labels li a {
+            color:#fff;
+        }
+
+        .labels {
+            margin-top:2%;
+        }
+
+        .closeButton {
+            background-color: #2980b9;
+        }
+
+        .nav-tabs li a:hover {
+            cursor:pointer;
+        }
+
+        .inbox-table {
+            margin-top: -15px;
+        }
+        .trash-table {
+            margin-top:-57px;
+        }
+
+        .sent-table {
+            margin-top: -36px;
+        }
+
+        .trash-icon:hover {
+            cursor:pointer;
+        }
+        @media screen and (min-width: 768px) {
+            .right {
+                    float:right;
+                    width:80%;
+                }
+
+              .left {
+                    float:left;
+                    width:18%;
+                    height:300px;
+                    margin-left: -2%;
+                    padding: 1% 0% 0% 1%;
+                }
+
+        }
+  

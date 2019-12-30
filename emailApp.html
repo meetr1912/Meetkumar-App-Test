@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script  src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"/>
+    <link rel = "stylesheet" type="text/css" href="style.css">
+</head>
+<body ng-app>
+
+    <div class="header">
+            <h3 class="logo-header"><a class="logo" href="#">Email</a></h3>  
+    </div>
+
+    <div class="container" ng-app ng-controller="EmailController">
+        <div class="left">
+            <button ng-click="showCompose()">Compose</button><br>
+            <ul ng-repeat="label in labels" class="labels">
+                <li><a href="#">{{label}}</a></li>
+            </ul><br>
+        </div>
+
+        <div class="right">
+            <ul class="nav nav-tabs">
+                <li ng-class="{active: activeTab == 'Inbox'}"><a ng-click="activeTab='Inbox'">Inbox</a></li>
+                <li ng-class="{active: activeTab == 'Sent'}"><a ng-click="activeTab='Sent'">Sent</a></li>
+                <li ng-class="{active: activeTab == 'Trash'}"><a ng-click="activeTab='Trash'">Trash</a></li>
+             </ul>
+        
+            <table class="table inbox-table table-bordered table-condensed" ng-show="activeTab=='Inbox'">
+                <tbody>
+                    <tr ng-repeat="email in emails">
+                        <td ng-click="showPopup(email)">{{ email.from }}</td>
+                        <td ng-click="showPopup(email)">{{ email.subject }} &nbsp; &nbsp; - <span class="faded">{{email.body}}</span></td>
+                        <td ng-click="showPopup(email)">{{ email.date }}</td>
+                        <td><img src="trash.png" class="icons trash-icon" ng-click="deleteEmail(email)"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+        <!-- sent section -->
+              <table class="table sent-table table-bordered table-condensed" ng-show="activeTab=='Sent'">
+                    <tbody>
+                        <tr ng-repeat="email in sentEmails"><br>
+
+                            <td ng-click="showPopup(email)">To: {{ email.to }}</td>
+                            <td ng-click="showPopup(email)">{{ email.subject }} &nbsp; &nbsp; - <span class="faded">{{email.body}}</span></td>
+                            <td ng-click="showPopup(email)">{{ email.date }}</td>
+                            <td><img src="trash.png" class="icons trash-icon" ng-click="deleteEmail(email)"/></td>
+                            <!-- <td>{{ email.date | date: 'EEE MMM d' }}</td> run filter-->
+                        </tr>
+                    </tbody>
+                </table>
+            
+        <!--end of sent section-->
+        
+        <!-- TRASH SECTION -->
+          <table class="table trash-table table-bordered table-condensed" ng-show="activeTab=='Trash'">
+                <tbody>
+                    <tr ng-repeat="email in deletedEmails"><br>
+
+                        <td ng-click="showPopup(email)">{{ email.from }}</td>
+                        <td ng-click="showPopup(email)">{{ email.subject }} &nbsp; &nbsp; - <span class="faded">{{email.body}}</span></td>
+                        <td ng-click="showPopup(email)">{{ email.date }}</td>
+                        <td ng-click="markAsNew(email)">Mark as new</td>
+                        <td><img src="trash.png" class="icons trash-icon" ng-click="deleteForever(email)"/>Delete Forever</td>
+                        <!-- <td>{{ email.date | date: 'EEE MMM d' }}</td> run filter-->
+                    </tr>
+                </tbody>
+            </table>
+
+        <!-- Show Pop up email -->
+            <div class="modal" ng-show="isPopupVisible">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="closePopup()" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3>{{selectedEmail.subject}}</h3>
+                </div>
+                <div class="modal-body">
+                    <strong>From:</strong> {{selectedEmail.from}}<br />
+                    <strong>Date:</strong> {{selectedEmail.date}}<br />
+                    <br />
+                    <p>
+                    <span style="white-space:pre">{{selectedEmail.body}}</span>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn1" ng-click="forwardEmail()">Forward</a>
+        <a href="#" class="btn1" ng-click="replyEmail()">Reply</a>
+                    <a href="#" class="btn1 closeButton" ng-click="closePopup()">Close</a>
+                </div>
+            </div> 
+
+        <!-- compose email-->
+        <div class="modal" ng-show="isComposeVisible">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeCompose()">X</button>
+                <h3>Compose Email</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="text" placeholder="To" style="width:95%;" ng-model="composeEmail.to"><br />
+                    <input type="text" placeholder="Subject" style="width:95%;" ng-model="composeEmail.subject"><br />
+                    <textarea style="width:95%;" rows="10" ng-model="composeEmail.body"></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn1 closeButton" ng-click="closeCompose()">Close</a>
+                <a href="#" class="btn1 send-btn" ng-click="sendEmail()">Send</a>
+            </div>
+        </div>
+  </div>
+</body>
+</html>
+
+
