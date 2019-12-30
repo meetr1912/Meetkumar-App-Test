@@ -1,4 +1,4 @@
-onst Email = require('../models/email.model.js');
+ const Email = require('../models/email.model.js');
 
 // Create and Save a new Email
 // Create and Save a new Email
@@ -12,8 +12,12 @@ exports.create = (req, res) => {
 
     // Create a Email
     const email = new Email({
+        EmailId: random.float23Array(),
+        from: req.body.from,
+        to: req.body.to,
         title: req.body.title || "Untitled Email", 
-        content: req.body.content
+        content: req.body.content,
+        timestamps: currentTimeStamp(),
     });
 
     // Save Email in the database
@@ -74,8 +78,12 @@ exports.update = (req, res) => {
 
     // Find Email and update it with the request body
     Email.findByIdAndUpdate(req.params.EmailId, {
+        EmailId: random.float23Array(),
+        from: req.body.from,
+        to: req.body.to,
         title: req.body.title || "Untitled Email",
-        content: req.body.content
+        content: req.body.content,
+        timestamps: currentTimeStamp(),
     }, {new: true})
     .then(Email => {
         if(!Email) {
